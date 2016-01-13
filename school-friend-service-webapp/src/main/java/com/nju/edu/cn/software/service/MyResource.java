@@ -3,7 +3,9 @@ package com.nju.edu.cn.software.service;
 import javax.ws.rs.GET;
 import javax.ws.rs.Path;
 import javax.ws.rs.Produces;
+import javax.ws.rs.core.Context;
 import javax.ws.rs.core.MediaType;
+import javax.ws.rs.core.UriInfo;
 
 import com.nju.edu.cn.software.entity.Student;
 
@@ -21,8 +23,9 @@ public class MyResource {
      */
     @GET
     @Produces(MediaType.TEXT_PLAIN)
-    public String getIt() {
-        return "Got it!";
+    public String getIt(@Context UriInfo info) {
+    	 
+        return "Got it!"+info.getPath();
     }
     
     @GET

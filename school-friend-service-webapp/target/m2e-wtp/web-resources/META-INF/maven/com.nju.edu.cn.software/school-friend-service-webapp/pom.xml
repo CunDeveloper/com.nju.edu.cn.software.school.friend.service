@@ -34,6 +34,7 @@
                 <type>pom</type>
                 <scope>import</scope>
             </dependency>
+             
         </dependencies>
     </dependencyManagement>
 
@@ -49,6 +50,7 @@
             <groupId>org.glassfish.jersey.media</groupId>
             <artifactId>jersey-media-moxy</artifactId>
         </dependency>
+        
          
     </dependencies>
     <properties>
