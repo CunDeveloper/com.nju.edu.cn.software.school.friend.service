@@ -7,6 +7,7 @@ import javax.ws.rs.core.Context;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.UriInfo;
 
+import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import com.nju.edu.cn.software.dao.impl.UserService;
@@ -20,6 +21,7 @@ import com.nju.edu.cn.software.entity.Student;
 @Path("myresource")
 public class MyResource {
 
+	private static final Logger log = Logger.getLogger(MyResource.class);
 	@Autowired
 	private UserService dao;
     /**
@@ -31,7 +33,12 @@ public class MyResource {
     @GET
     @Produces(MediaType.TEXT_PLAIN)
     public String getIt(@Context UriInfo info) {
-    	User user = dao.getUser("1");
+    	User user = dao.getUser("2");
+    	User user1 = new User();
+    	user1.setId(3);
+    	user1.setName("zhangxiaojun");
+    	log.info("get resource from getIt hello world");
+    	//dao.saveUser(user1);
         return "Got it!"+info.getPath()+"====="+user.getName();
     }
     
