@@ -4,7 +4,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Service;
 
+import com.nju.edu.cn.software.domain.User;
 import com.nju.edu.cn.software.mapper.Usermapper;
+ 
 
 @Service
 @Scope("prototype")

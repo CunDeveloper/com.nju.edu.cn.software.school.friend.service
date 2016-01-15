@@ -9,9 +9,10 @@ import javax.ws.rs.core.UriInfo;
 
 import org.springframework.beans.factory.annotation.Autowired;
 
-import com.nju.edu.cn.software.dao.impl.User;
 import com.nju.edu.cn.software.dao.impl.UserService;
+import com.nju.edu.cn.software.domain.User;
 import com.nju.edu.cn.software.entity.Student;
+ 
 
 /**
  * Root resource (exposed at "myresource" path)
