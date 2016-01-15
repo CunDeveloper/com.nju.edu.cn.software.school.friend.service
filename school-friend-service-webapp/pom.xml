@@ -94,7 +94,7 @@
         	<groupId>org.springframework</groupId>
         	<artifactId>spring-jdbc</artifactId>
     	</dependency>
-    	
+    	 
     	<dependency>
 			<groupId>mysql</groupId>
 			<artifactId>mysql-connector-java</artifactId>
@@ -105,7 +105,22 @@
 			<artifactId>commons-dbcp</artifactId>
 			<version>1.2.2</version>
 		</dependency>
-    	 
+    	<dependency>
+			<groupId>org.mybatis</groupId>
+			<artifactId>mybatis-spring</artifactId>
+			<version>1.2.3</version>
+		</dependency>
+    	<dependency>
+			<groupId>org.mybatis</groupId>
+			<artifactId>mybatis</artifactId>
+			<version>3.3.0</version>
+		</dependency>
+    	
+    	<dependency>
+        	<groupId>log4j</groupId>
+        	<artifactId>log4j</artifactId>
+        	<version>1.2.14</version>
+    	</dependency>
     	
     </dependencies>
     <properties>

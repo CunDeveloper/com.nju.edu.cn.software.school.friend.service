@@ -9,7 +9,8 @@ import javax.ws.rs.core.UriInfo;
 
 import org.springframework.beans.factory.annotation.Autowired;
 
-import com.nju.edu.cn.software.dao.impl.StudentDao;
+import com.nju.edu.cn.software.dao.impl.User;
+import com.nju.edu.cn.software.dao.impl.UserService;
 import com.nju.edu.cn.software.entity.Student;
 
 /**
@@ -19,7 +20,7 @@ import com.nju.edu.cn.software.entity.Student;
 public class MyResource {
 
 	@Autowired
-	private StudentDao dao;
+	private UserService dao;
     /**
      * Method handling HTTP GET requests. The returned object will be sent
      * to the client as "text/plain" media type.
@@ -29,8 +30,8 @@ public class MyResource {
     @GET
     @Produces(MediaType.TEXT_PLAIN)
     public String getIt(@Context UriInfo info) {
-    	dao.doExecute();
-        return "Got it!"+info.getPath();
+    	User user = dao.getUser("1");
+        return "Got it!"+info.getPath()+"====="+user.getName();
     }
     
     @GET
