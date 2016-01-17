@@ -1,8 +1,12 @@
 package com.nju.edu.cn.software.domain;
 
+import javax.validation.constraints.NotNull;
+
 public class User {
 
+	@NotNull
 	private int id;
+	@NotNull
 	private String name;
 	public int getId() {
 		return id;

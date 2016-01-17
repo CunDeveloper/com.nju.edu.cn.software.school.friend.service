@@ -1,18 +1,26 @@
 package com.nju.edu.cn.software.service;
 
+import javax.validation.Valid;
+import javax.ws.rs.Consumes;
 import javax.ws.rs.GET;
+import javax.ws.rs.POST;
 import javax.ws.rs.Path;
 import javax.ws.rs.Produces;
-import javax.ws.rs.core.Context;
 import javax.ws.rs.core.MediaType;
-import javax.ws.rs.core.UriInfo;
-
+import javax.ws.rs.core.Response;
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import com.nju.edu.cn.software.dao.impl.UserService;
+import com.nju.edu.cn.software.domain.Author;
 import com.nju.edu.cn.software.domain.User;
-import com.nju.edu.cn.software.entity.Student;
+ 
+import com.nju.edu.cn.software.exception.EntityNotFoundMapper;
+import com.nju.edu.cn.software.mapper.AuthorMapper;
+import com.nju.edu.cn.software.mapper.BlogMapper;
+import com.nju.edu.cn.software.mapper.TestMapper;
+import com.nju.edu.cn.software.resource.RespAuthor;
+import com.nju.edu.cn.software.resource.StatusInfo;
  
 
 /**
@@ -24,6 +32,12 @@ public class MyResource {
 	private static final Logger log = Logger.getLogger(MyResource.class);
 	@Autowired
 	private UserService dao;
+	@Autowired
+	private TestMapper mapper;
+	@Autowired
+	private BlogMapper blogMapper;
+	@Autowired
+	private AuthorMapper authorMapper;
     /**
      * Method handling HTTP GET requests. The returned object will be sent
      * to the client as "text/plain" media type.
@@ -31,25 +45,36 @@ public class MyResource {
      * @return String that will be returned as a text/plain response.
      */
     @GET
-    @Produces(MediaType.TEXT_PLAIN)
-    public String getIt(@Context UriInfo info) {
-    	User user = dao.getUser("2");
-    	User user1 = new User();
-    	user1.setId(3);
-    	user1.setName("zhangxiaojun");
-    	log.info("get resource from getIt hello world");
-    	//dao.saveUser(user1);
-        return "Got it!"+info.getPath()+"====="+user.getName();
+    @Produces(MediaType.APPLICATION_JSON)
+    public Response getIt() {
+    	Response response;
+    	 try{
+    		 User user =dao.getUser("22a");
+    		 user.getName();
+    		StatusInfo info = new StatusInfo();
+    		info.setCode(200);
+    		info.setMessage("OK");
+    		RespAuthor rAuthor = new RespAuthor();
+    		Author author = authorMapper.getAuthor().get(0);
+    		rAuthor.setAuthor(author);
+    		rAuthor.setStatusInfo(info);
+         	response =Response.status(200).entity(rAuthor).build();
+            
+    	 }catch(Exception e){
+    		response = new EntityNotFoundMapper().toResponse(e);
+    	 }
+    	 return response;
     }
     
-    @GET
-    @Path("json")
-    @Produces(MediaType.APPLICATION_JSON)
-    public Student getStudent(){
-    	Student student = new Student();
-    	student.setAge(22);
-    	student.setId(1);
-    	student.setName("cunzhang");
-    	return student;
+    @POST
+    @Path("saveUser")
+    @Produces(MediaType.TEXT_PLAIN)
+    @Consumes(MediaType.APPLICATION_JSON)
+    public String saveUser(@Valid User user){
+    	log.info(user.getName());
+    	dao.saveUser(user);
+    	return "ok";
     }
+    
+   
 }

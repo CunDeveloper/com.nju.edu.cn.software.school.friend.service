@@ -9,6 +9,7 @@ public class Application extends ResourceConfig {
 		  register(org.glassfish.jersey.server.filter.UriConnegFilter.class);
 		  register(com.nju.edu.cn.software.filter.PoweredByResponseFilter.class);
 		  register(com.nju.edu.cn.software.filter.AuthorizationRequestFilter.class);
+		  register(com.nju.edu.cn.software.exception.EntityNotFoundMapper.class);
 	      property(ServerProperties.METAINF_SERVICES_LOOKUP_DISABLE, true);
 	}
 }

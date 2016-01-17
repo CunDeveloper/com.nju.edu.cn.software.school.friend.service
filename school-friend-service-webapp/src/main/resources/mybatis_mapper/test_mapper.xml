@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.nju.edu.cn.software.mapper.TestMapper">
+  <select id="getUser" resultType="Student">
+    select 
+    id as "id",
+    user_name as "userName",
+    user_pass as "userPass"
+    from user
+  </select>
+   
+</mapper>

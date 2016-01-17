@@ -6,8 +6,9 @@
   <select id="getUser" resultType="User">
     select * from mytable where id = #{userId}
   </select>
-   <insert id="saveUser" parameterType="User" statementType="PREPARED">
-     insert into mytable(id,name)
-     values(#{id},#{name})
+   <insert id="saveUser" parameterType="User" statementType="PREPARED" useGeneratedKeys="true"
+    keyProperty="id">
+     insert into mytable(name)
+     values(#{name})
    </insert>
 </mapper>
